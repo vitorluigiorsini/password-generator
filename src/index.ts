@@ -1,12 +1,22 @@
-import { generatePassword } from './functions/index.js'
+import express from 'express'
 
-console.log(
-  'Password: ' +
-    generatePassword.generate({
-      passwordLength: 18,
-      hasLowerCase: false,
-      hasUpperCase: false,
-      hasNumbers: false,
-      hasSymbols: false
-    })
-)
+// routes
+import errorNotFound from './routes/ErrorNotFound.js'
+import passwordRouter from './routes/PasswordRoute.js'
+
+const app = express()
+app.use(express.Router())
+
+app.use(express.json())
+app.use('/password', passwordRouter)
+app.use('/*', errorNotFound)
+
+const PORT = <number | undefined>process.env.PORT || 3000
+app
+  .listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running at ${PORT}`)
+  })
+  .once('error', (error) => {
+    console.error('Server failed', error)
+    process.exit(1)
+  })

@@ -12,7 +12,6 @@ export default class GeneratePassword {
   private characteres: number[]
   private characteresLowerCase: string[]
   private characteresUpperCase: string[]
-  private allCharacteresOptions: (string | number)[]
   constructor() {
     this.numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     this.symbols = ['!', '@', '#', '$', '%', '^', '&', '*']
@@ -23,12 +22,6 @@ export default class GeneratePassword {
     this.characteresUpperCase = this.characteresLowerCase.map((item) =>
       item.toUpperCase()
     )
-    this.allCharacteresOptions = [
-      ...this.characteresLowerCase,
-      ...this.characteresUpperCase,
-      ...this.numbers,
-      ...this.symbols
-    ]
   }
 
   *randomIndex({
@@ -56,7 +49,7 @@ export default class GeneratePassword {
   }: IOptions) => {
     const selectedOptions = () => {
       if (!hasLowerCase && !hasUpperCase && !hasNumbers && !hasSymbols) {
-        return this.allCharacteresOptions as string[]
+        return this.characteresLowerCase
       }
 
       return [
