@@ -11,7 +11,7 @@ app.use(express.json())
 app.use('/password', passwordRouter)
 app.use('/*', errorNotFound)
 
-const PORT = <number | undefined>process.env.PORT || 3000
+const PORT = <number | undefined>process.env.PORT || 5000
 app
   .listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running at ${PORT}`)
