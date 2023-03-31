@@ -2,13 +2,13 @@
   "name": "password-generator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./src/index.ts",
+    "dev": "nodemon ./src/app.ts",
     "build": "rm -rf ./dist/ && tsc"
   },
   "devDependencies": {
