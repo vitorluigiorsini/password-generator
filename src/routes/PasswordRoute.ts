@@ -1,8 +1,9 @@
 import { Router } from 'express'
 
-import { generatePassword } from '../functions/index.js'
+import { generateInstance } from '../factories/index.js'
 
 const passwordRouter = Router()
+const generatePassword = generateInstance()
 
 passwordRouter.get('/', (req, res) => {
   const data = req.body

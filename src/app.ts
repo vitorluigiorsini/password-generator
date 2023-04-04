@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
 import express from 'express'
 
 // routes
@@ -11,9 +13,10 @@ app.use(express.json())
 app.use('/password', passwordRouter)
 app.use('/*', errorNotFound)
 
-const PORT = <number | undefined>process.env.PORT || 5000
+const PORT = process.env.PORT
+
 app
-  .listen(PORT, '0.0.0.0', () => {
+  .listen(PORT, () => {
     console.log(`Server is running at ${PORT}`)
   })
   .once('error', (error) => {

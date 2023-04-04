@@ -1,12 +1,6 @@
-interface IOptions {
-  passwordLength: number
-  hasLowerCase?: boolean
-  hasUpperCase?: boolean
-  hasNumbers?: boolean
-  hasSymbols?: boolean
-}
+import { IOptions } from 'entities'
 
-export default class GeneratePassword {
+export default class GenerateService {
   private numbers: number[]
   private symbols: string[]
   private characteres: number[]
@@ -24,7 +18,7 @@ export default class GeneratePassword {
     )
   }
 
-  *randomIndex({
+  *#randomIndex({
     optionsLength,
     passwordCharLength
   }: {
@@ -34,7 +28,7 @@ export default class GeneratePassword {
     const lastPasswordCharLength = passwordCharLength - 1
     if (lastPasswordCharLength < 0) return
     yield Math.floor(Math.random() * optionsLength)
-    yield* this.randomIndex({
+    yield* this.#randomIndex({
       optionsLength,
       passwordCharLength: lastPasswordCharLength
     })
@@ -62,7 +56,7 @@ export default class GeneratePassword {
 
     const options = selectedOptions()
 
-    const optionsIndexes = this.randomIndex({
+    const optionsIndexes = this.#randomIndex({
       optionsLength: options.length,
       passwordCharLength: passwordLength
     })
